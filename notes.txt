@@ -1,0 +1,53 @@
+1. creating database;
+=>CREATE DATABASE my_database;
+
+2.creating table
+=> CREATE TABLE my_table (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    created_date DATE DEFAULT CURRENT_DATE
+ );
+
+3. delete databae;
+=>DROP DATABASE my_database
+
+Q.write a two table using sql query including primary key and foreign key and inserting the data;
+
+=>CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    customer_email VARCHAR(100)
+);
+
+=>CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+#data inserting the data..
+=>INSERT INTO customers (customer_id, customer_name, customer_email)
+VALUES (1, 'John Doe', 'john.doe@example.com');
+
+=> INSERT INTO orders (order_id, order_date, customer_id)
+VALUES (1001, '2023-04-27', 1);
+
+4. Join the above table.
+=>SELECT customer_name, order_date
+FROM customers
+,orders WHERE
+customers.customer_id = orders.customer_id;
+  or
+=>SELECT *
+FROM customers
+JOIN orders
+ON customers.customer_id = orders.customer_id;
+
+ or(natural join)
+=>SELECT *
+FROM customers
+NATURAL JOIN orders;
+
+
+
